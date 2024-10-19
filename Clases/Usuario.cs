@@ -33,7 +33,7 @@ namespace TPI_2024_Parte2.Clases
 
         public override string ToString()
         {
-            return rol.Equals("personal")? $"Dr/a {username}" : $"Id : {id}\nNombre : {username}\nContrasenia : {password}\nRol : {rol}\nCiudad : {ciudad}\nDireccion : {direccion}";
+            return rol.Equals("personal")? $"Dr/a {username}" : $"{username} - Ciudad : {ciudad} - Direccion : {direccion}";
         }
     }
 }

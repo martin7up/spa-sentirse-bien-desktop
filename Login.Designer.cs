@@ -49,7 +49,7 @@ namespace TPI_2024_Parte2
             button4 = new Button();
             button3 = new Button();
             btClientesTodos = new Button();
-            button1 = new Button();
+            pagosPorCliente = new Button();
             pWelcome.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -181,7 +181,7 @@ namespace TPI_2024_Parte2
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(btClientesTodos);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(pagosPorCliente);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(185, 490);
@@ -263,14 +263,15 @@ namespace TPI_2024_Parte2
             btClientesTodos.UseVisualStyleBackColor = true;
             btClientesTodos.Click += btClientesTodos_Click;
             // 
-            // button1
+            // pagosPorCliente
             // 
-            button1.Location = new Point(3, 382);
-            button1.Name = "button1";
-            button1.Size = new Size(177, 23);
-            button1.TabIndex = 1;
-            button1.Text = "Pagos";
-            button1.UseVisualStyleBackColor = true;
+            pagosPorCliente.Location = new Point(3, 382);
+            pagosPorCliente.Name = "pagosPorCliente";
+            pagosPorCliente.Size = new Size(177, 23);
+            pagosPorCliente.TabIndex = 1;
+            pagosPorCliente.Text = "Pagos";
+            pagosPorCliente.UseVisualStyleBackColor = true;
+            pagosPorCliente.Click += button1_Click;
             // 
             // Login
             // 
@@ -306,7 +307,6 @@ namespace TPI_2024_Parte2
         private Button button4;
         private Button button3;
         private Button btClientesTodos;
-        private Button button1;
         private Panel panel2;
         private Button button7;
         private Button btDeslogueo;
@@ -320,14 +320,18 @@ namespace TPI_2024_Parte2
         private ClientesPorFecha formuClientesPorFecha;
         private ClientesPorProfesional formuClientesPorProfesional;
         private ClientesTodos formuClientesTodos;
+        private GenerarFactura formuFactura;
+
+        private Button btClientesPorFecha;
+        private Button btClientesPorProfesional;
+        private Button pagosPorCliente;
         //--------------------------------------------------------------------------------------
 
         //Para trabajar momentaneamente sin conexion--------------------------------------------
         public static List<Usuario> listaUsuarios;
         public static List<Servicio> listaServicios;
         public static List<Turno> listaTurnos;
-        private Button btClientesPorFecha;
-        private Button btClientesPorProfesional;
         //--------------------------------------------------------------------------------------
+
     }
 }

@@ -49,7 +49,7 @@ namespace TPI_2024_Parte2
             panelGrid.Controls.Add(dataGridClientesPorFecha);
             panelGrid.Location = new Point(12, 12);
             panelGrid.Name = "panelGrid";
-            panelGrid.Size = new Size(572, 426);
+            panelGrid.Size = new Size(572, 437);
             panelGrid.TabIndex = 0;
             // 
             // dataGridClientesPorFecha
@@ -60,6 +60,7 @@ namespace TPI_2024_Parte2
             dataGridClientesPorFecha.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridClientesPorFecha.Columns.AddRange(new DataGridViewColumn[] { Cliente, DireccionCliente, Fecha, Horario });
             dataGridClientesPorFecha.Location = new Point(3, 3);
+            dataGridClientesPorFecha.MultiSelect = false;
             dataGridClientesPorFecha.Name = "dataGridClientesPorFecha";
             dataGridClientesPorFecha.ReadOnly = true;
             dataGridClientesPorFecha.RowHeadersVisible = false;
@@ -68,7 +69,7 @@ namespace TPI_2024_Parte2
             dataGridClientesPorFecha.ShowCellToolTips = false;
             dataGridClientesPorFecha.ShowEditingIcon = false;
             dataGridClientesPorFecha.ShowRowErrors = false;
-            dataGridClientesPorFecha.Size = new Size(564, 420);
+            dataGridClientesPorFecha.Size = new Size(564, 431);
             dataGridClientesPorFecha.TabIndex = 1;
             // 
             // Cliente

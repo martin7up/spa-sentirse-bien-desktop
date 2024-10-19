@@ -22,10 +22,10 @@ namespace TPI_2024_Parte2
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            fechaSeleccionada =  e.Start;
+            fechaSeleccionada = e.Start;
             cargarClientesTodosPorFecha(fechaSeleccionada);
         }
-        
+
         private void cargarClientesTodosPorFecha(DateTime fechaDesdeCalendario)
         {
 
@@ -55,5 +55,9 @@ namespace TPI_2024_Parte2
 
         }
 
+        private void btGenerarFacturas_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

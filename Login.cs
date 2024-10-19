@@ -140,19 +140,25 @@ namespace TPI_2024_Parte2
         private void btClientesPorFecha_Click(object sender, EventArgs e)
         {
             formuClientesPorFecha = new();
-            formuClientesPorFecha.Show();
+            formuClientesPorFecha.ShowDialog();
         }
 
         private void btClientesTodos_Click(object sender, EventArgs e)
         {
             formuClientesTodos = new();
-            formuClientesTodos.Show();
+            formuClientesTodos.ShowDialog();
         }
 
         private void btClientesPorProfesional_Click(object sender, EventArgs e)
         {
             formuClientesPorProfesional = new();
-            formuClientesPorProfesional.Show();
+            formuClientesPorProfesional.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            formuFactura = new();
+            formuFactura.ShowDialog();
         }
     }
 }
