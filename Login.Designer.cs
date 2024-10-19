@@ -46,8 +46,6 @@ namespace TPI_2024_Parte2
             button7 = new Button();
             button6 = new Button();
             button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
             btClientesTodos = new Button();
             pagosPorCliente = new Button();
             pWelcome.SuspendLayout();
@@ -178,8 +176,6 @@ namespace TPI_2024_Parte2
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button5);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button3);
             panel1.Controls.Add(btClientesTodos);
             panel1.Controls.Add(pagosPorCliente);
             panel1.Location = new Point(0, 0);
@@ -209,7 +205,7 @@ namespace TPI_2024_Parte2
             // 
             // button7
             // 
-            button7.Location = new Point(3, 326);
+            button7.Location = new Point(3, 112);
             button7.Name = "button7";
             button7.Size = new Size(177, 50);
             button7.TabIndex = 7;
@@ -219,7 +215,7 @@ namespace TPI_2024_Parte2
             // 
             // button6
             // 
-            button6.Location = new Point(3, 214);
+            button6.Location = new Point(3, 313);
             button6.Name = "button6";
             button6.Size = new Size(177, 50);
             button6.TabIndex = 6;
@@ -228,30 +224,12 @@ namespace TPI_2024_Parte2
             // 
             // button5
             // 
-            button5.Location = new Point(3, 159);
+            button5.Location = new Point(3, 257);
             button5.Name = "button5";
             button5.Size = new Size(177, 50);
             button5.TabIndex = 5;
             button5.Text = "Administrar Usuarios";
             button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(3, 270);
-            button4.Name = "button4";
-            button4.Size = new Size(177, 50);
-            button4.TabIndex = 4;
-            button4.Text = "Estadisticas laborales";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(3, 104);
-            button3.Name = "button3";
-            button3.Size = new Size(177, 50);
-            button3.TabIndex = 3;
-            button3.Text = "Serv por fecha";
-            button3.UseVisualStyleBackColor = true;
             // 
             // btClientesTodos
             // 
@@ -265,7 +243,7 @@ namespace TPI_2024_Parte2
             // 
             // pagosPorCliente
             // 
-            pagosPorCliente.Location = new Point(3, 382);
+            pagosPorCliente.Location = new Point(3, 83);
             pagosPorCliente.Name = "pagosPorCliente";
             pagosPorCliente.Size = new Size(177, 23);
             pagosPorCliente.TabIndex = 1;
@@ -304,8 +282,6 @@ namespace TPI_2024_Parte2
         private Panel panel1;
         private Button button6;
         private Button button5;
-        private Button button4;
-        private Button button3;
         private Button btClientesTodos;
         private Panel panel2;
         private Button button7;

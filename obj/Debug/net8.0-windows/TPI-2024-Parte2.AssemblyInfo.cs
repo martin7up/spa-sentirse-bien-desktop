@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TPI-2024-Parte2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40c61d07b8e59fe2046a93ad3aed877e33ec2d06")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9123e71086627ce404733501bf9b108e44950473")]
 [assembly: System.Reflection.AssemblyProductAttribute("TPI-2024-Parte2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TPI-2024-Parte2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

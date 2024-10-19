@@ -34,6 +34,8 @@
             Fecha = new DataGridViewTextBoxColumn();
             Profesional = new DataGridViewTextBoxColumn();
             panelClientesPorProfesional = new Panel();
+            btGenerarInforme = new Button();
+            checkBoxGenerarInforme = new CheckBox();
             checkBoxCalendario = new CheckBox();
             monthCalendar1 = new MonthCalendar();
             cbPersonal = new ComboBox();
@@ -84,6 +86,8 @@
             // 
             // panelClientesPorProfesional
             // 
+            panelClientesPorProfesional.Controls.Add(btGenerarInforme);
+            panelClientesPorProfesional.Controls.Add(checkBoxGenerarInforme);
             panelClientesPorProfesional.Controls.Add(checkBoxCalendario);
             panelClientesPorProfesional.Controls.Add(monthCalendar1);
             panelClientesPorProfesional.Controls.Add(cbPersonal);
@@ -94,10 +98,31 @@
             panelClientesPorProfesional.Size = new Size(272, 429);
             panelClientesPorProfesional.TabIndex = 6;
             // 
+            // btGenerarInforme
+            // 
+            btGenerarInforme.Location = new Point(12, 387);
+            btGenerarInforme.Name = "btGenerarInforme";
+            btGenerarInforme.Size = new Size(248, 23);
+            btGenerarInforme.TabIndex = 9;
+            btGenerarInforme.Text = "Generar Informe";
+            btGenerarInforme.UseVisualStyleBackColor = true;
+            btGenerarInforme.Click += btGenerarInforme_Click;
+            // 
+            // checkBoxGenerarInforme
+            // 
+            checkBoxGenerarInforme.AutoSize = true;
+            checkBoxGenerarInforme.Location = new Point(12, 362);
+            checkBoxGenerarInforme.Name = "checkBoxGenerarInforme";
+            checkBoxGenerarInforme.Size = new Size(112, 19);
+            checkBoxGenerarInforme.TabIndex = 8;
+            checkBoxGenerarInforme.Text = "Generar informe";
+            checkBoxGenerarInforme.UseVisualStyleBackColor = true;
+            checkBoxGenerarInforme.CheckedChanged += checkBoxGenerarInforme_CheckedChanged;
+            // 
             // checkBoxCalendario
             // 
             checkBoxCalendario.AutoSize = true;
-            checkBoxCalendario.Location = new Point(12, 227);
+            checkBoxCalendario.Location = new Point(12, 157);
             checkBoxCalendario.Name = "checkBoxCalendario";
             checkBoxCalendario.Size = new Size(235, 19);
             checkBoxCalendario.TabIndex = 7;
@@ -107,7 +132,7 @@
             // 
             // monthCalendar1
             // 
-            monthCalendar1.Location = new Point(12, 258);
+            monthCalendar1.Location = new Point(12, 188);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 6;
             monthCalendar1.DateSelected += monthCalendar1_DateSelected;
@@ -168,5 +193,7 @@
         private DataGridViewTextBoxColumn Profesional;
         private MonthCalendar monthCalendar1;
         private CheckBox checkBoxCalendario;
+        private Button btGenerarInforme;
+        private CheckBox checkBoxGenerarInforme;
     }
 }

@@ -20,7 +20,7 @@ namespace TPI_2024_Parte2.Clases
         public Dictionary<string, long>? fecha { get; set; }
         //AGREGAR ESTOS CAMPOS EN BASE DE DATOS FIREBASE
         [FirestoreProperty]
-        public bool? is_pagado { get; set; }
+        public bool is_pagado { get; set; }
 
         [FirestoreProperty]
         public bool? is_cancelado { get; set; }

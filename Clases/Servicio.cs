@@ -10,7 +10,7 @@ public class Servicio
     public string? descripcion { get; set; }
     
     [FirestoreProperty]
-    public int? precio { get; set; }
+    public int precio { get; set; }
     //AGREGAR ESTE CAMPO EN BASE DE DATOS FIREBASE
     [FirestoreProperty]
     public string? personal_a_cargo { get; set; }

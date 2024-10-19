@@ -44,3 +44,5 @@ C:\Users\114R7IN\source\repos\TPI-2024-Parte2\obj\Debug\net8.0-windows\TPI_2024_
 C:\Users\114R7IN\source\repos\TPI-2024-Parte2\obj\Debug\net8.0-windows\TPI_2024_Parte2.ClientesPorProfesional.resources
 C:\Users\114R7IN\source\repos\TPI-2024-Parte2\obj\Debug\net8.0-windows\TPI_2024_Parte2.ClientesTodos.resources
 C:\Users\114R7IN\source\repos\TPI-2024-Parte2\obj\Debug\net8.0-windows\TPI_2024_Parte2.GenerarFactura.resources
+C:\Users\114R7IN\source\repos\TPI-2024-Parte2\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\114R7IN\source\repos\TPI-2024-Parte2\bin\Debug\net8.0-windows\itextsharp.dll

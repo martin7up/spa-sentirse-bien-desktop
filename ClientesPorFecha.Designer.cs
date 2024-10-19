@@ -39,6 +39,8 @@ namespace TPI_2024_Parte2
             monthCalendar1 = new MonthCalendar();
             panelMostrarPorFecha = new Panel();
             rbMostrarPorFecha = new RadioButton();
+            checkBoxRangoFechas = new CheckBox();
+            btGeneraInforme = new Button();
             panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridClientesPorFecha).BeginInit();
             panelMostrarPorFecha.SuspendLayout();
@@ -122,11 +124,34 @@ namespace TPI_2024_Parte2
             rbMostrarPorFecha.Text = "Clientes por Fecha";
             rbMostrarPorFecha.UseVisualStyleBackColor = true;
             // 
+            // checkBoxRangoFechas
+            // 
+            checkBoxRangoFechas.AutoSize = true;
+            checkBoxRangoFechas.Location = new Point(595, 241);
+            checkBoxRangoFechas.Name = "checkBoxRangoFechas";
+            checkBoxRangoFechas.Size = new Size(136, 19);
+            checkBoxRangoFechas.TabIndex = 2;
+            checkBoxRangoFechas.Text = "Usar rango de fechas";
+            checkBoxRangoFechas.UseVisualStyleBackColor = true;
+            checkBoxRangoFechas.CheckedChanged += checkBoxRangoFechas_CheckedChanged;
+            // 
+            // btGeneraInforme
+            // 
+            btGeneraInforme.Location = new Point(590, 266);
+            btGeneraInforme.Name = "btGeneraInforme";
+            btGeneraInforme.Size = new Size(272, 23);
+            btGeneraInforme.TabIndex = 3;
+            btGeneraInforme.Text = "Generar Informe";
+            btGeneraInforme.UseVisualStyleBackColor = true;
+            btGeneraInforme.Click += btGeneraInforme_Click;
+            // 
             // ClientesPorFecha
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(865, 461);
+            Controls.Add(btGeneraInforme);
+            Controls.Add(checkBoxRangoFechas);
             Controls.Add(panelMostrarPorFecha);
             Controls.Add(panelGrid);
             Name = "ClientesPorFecha";
@@ -136,6 +161,7 @@ namespace TPI_2024_Parte2
             panelMostrarPorFecha.ResumeLayout(false);
             panelMostrarPorFecha.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -152,6 +178,8 @@ namespace TPI_2024_Parte2
         private MonthCalendar monthCalendar1;
         private Panel panelMostrarPorFecha;
         private RadioButton rbMostrarPorFecha;
+        private CheckBox checkBoxRangoFechas;
+        private Button btGeneraInforme;
         //-----------------------------------------------------------------------------------------
     }
 }
