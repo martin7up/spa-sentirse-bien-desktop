@@ -41,12 +41,14 @@ namespace TPI_2024_Parte2
             lbContrasenia = new Label();
             tBoxUsuario = new TextBox();
             panel1 = new Panel();
+            btClientesPorProfesional = new Button();
+            btClientesPorFecha = new Button();
             button7 = new Button();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             button3 = new Button();
-            button2 = new Button();
+            btClientesTodos = new Button();
             button1 = new Button();
             pWelcome.SuspendLayout();
             panel2.SuspendLayout();
@@ -58,9 +60,9 @@ namespace TPI_2024_Parte2
             pWelcome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pWelcome.BorderStyle = BorderStyle.FixedSingle;
             pWelcome.Controls.Add(panel2);
-            pWelcome.Location = new Point(102, 0);
+            pWelcome.Location = new Point(191, 0);
             pWelcome.Name = "pWelcome";
-            pWelcome.Size = new Size(363, 413);
+            pWelcome.Size = new Size(1014, 490);
             pWelcome.TabIndex = 0;
             // 
             // panel2
@@ -75,7 +77,7 @@ namespace TPI_2024_Parte2
             panel2.Controls.Add(checkBox1);
             panel2.Controls.Add(lbContrasenia);
             panel2.Controls.Add(tBoxUsuario);
-            panel2.Location = new Point(47, 43);
+            panel2.Location = new Point(373, 82);
             panel2.Name = "panel2";
             panel2.Size = new Size(264, 324);
             panel2.TabIndex = 7;
@@ -171,23 +173,45 @@ namespace TPI_2024_Parte2
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btClientesPorProfesional);
+            panel1.Controls.Add(btClientesPorFecha);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btClientesTodos);
             panel1.Controls.Add(button1);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(93, 413);
+            panel1.Size = new Size(185, 490);
             panel1.TabIndex = 1;
+            // 
+            // btClientesPorProfesional
+            // 
+            btClientesPorProfesional.Location = new Point(3, 56);
+            btClientesPorProfesional.Name = "btClientesPorProfesional";
+            btClientesPorProfesional.Size = new Size(177, 21);
+            btClientesPorProfesional.TabIndex = 9;
+            btClientesPorProfesional.Text = "ClientesPorProfesional";
+            btClientesPorProfesional.UseVisualStyleBackColor = true;
+            btClientesPorProfesional.Click += btClientesPorProfesional_Click;
+            // 
+            // btClientesPorFecha
+            // 
+            btClientesPorFecha.Location = new Point(3, 3);
+            btClientesPorFecha.Name = "btClientesPorFecha";
+            btClientesPorFecha.Size = new Size(177, 21);
+            btClientesPorFecha.TabIndex = 8;
+            btClientesPorFecha.Text = "ClientesXfecha";
+            btClientesPorFecha.UseVisualStyleBackColor = true;
+            btClientesPorFecha.Click += btClientesPorFecha_Click;
             // 
             // button7
             // 
-            button7.Location = new Point(3, 291);
+            button7.Location = new Point(3, 326);
             button7.Name = "button7";
-            button7.Size = new Size(85, 50);
+            button7.Size = new Size(177, 50);
             button7.TabIndex = 7;
             button7.Text = "Administrar Servicios";
             button7.UseVisualStyleBackColor = true;
@@ -195,54 +219,55 @@ namespace TPI_2024_Parte2
             // 
             // button6
             // 
-            button6.Location = new Point(3, 179);
+            button6.Location = new Point(3, 214);
             button6.Name = "button6";
-            button6.Size = new Size(85, 50);
+            button6.Size = new Size(177, 50);
             button6.TabIndex = 6;
             button6.Text = "Habilitar Usuarios";
             button6.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
-            button5.Location = new Point(3, 124);
+            button5.Location = new Point(3, 159);
             button5.Name = "button5";
-            button5.Size = new Size(85, 50);
+            button5.Size = new Size(177, 50);
             button5.TabIndex = 5;
             button5.Text = "Administrar Usuarios";
             button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            button4.Location = new Point(3, 235);
+            button4.Location = new Point(3, 270);
             button4.Name = "button4";
-            button4.Size = new Size(85, 50);
+            button4.Size = new Size(177, 50);
             button4.TabIndex = 4;
             button4.Text = "Estadisticas laborales";
             button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            button3.Location = new Point(3, 69);
+            button3.Location = new Point(3, 104);
             button3.Name = "button3";
-            button3.Size = new Size(85, 50);
+            button3.Size = new Size(177, 50);
             button3.TabIndex = 3;
             button3.Text = "Serv por fecha";
             button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btClientesTodos
             // 
-            button2.Location = new Point(3, 41);
-            button2.Name = "button2";
-            button2.Size = new Size(85, 23);
-            button2.TabIndex = 2;
-            button2.Text = "Clientes";
-            button2.UseVisualStyleBackColor = true;
+            btClientesTodos.Location = new Point(3, 30);
+            btClientesTodos.Name = "btClientesTodos";
+            btClientesTodos.Size = new Size(177, 21);
+            btClientesTodos.TabIndex = 2;
+            btClientesTodos.Text = "ClientesTodos";
+            btClientesTodos.UseVisualStyleBackColor = true;
+            btClientesTodos.Click += btClientesTodos_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(3, 12);
+            button1.Location = new Point(3, 382);
             button1.Name = "button1";
-            button1.Size = new Size(85, 23);
+            button1.Size = new Size(177, 23);
             button1.TabIndex = 1;
             button1.Text = "Pagos";
             button1.UseVisualStyleBackColor = true;
@@ -251,7 +276,7 @@ namespace TPI_2024_Parte2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(465, 413);
+            ClientSize = new Size(1205, 490);
             Controls.Add(panel1);
             Controls.Add(pWelcome);
             Name = "Login";
@@ -280,19 +305,29 @@ namespace TPI_2024_Parte2
         private Button button5;
         private Button button4;
         private Button button3;
-        private Button button2;
+        private Button btClientesTodos;
         private Button button1;
         private Panel panel2;
         private Button button7;
+        private Button btDeslogueo;
 
         //Vbles que no son de disenio o funcionalidad
         private AdministrarServicios FormServicios;
         private Usuario usuarioLogeado;
         //--------------------------------------------------------------------------------------
 
+        //Formularios llamados desde Login------------------------------------------------------
+        private ClientesPorFecha formuClientesPorFecha;
+        private ClientesPorProfesional formuClientesPorProfesional;
+        private ClientesTodos formuClientesTodos;
+        //--------------------------------------------------------------------------------------
+
         //Para trabajar momentaneamente sin conexion--------------------------------------------
-        public List<Usuario> listaUsuarios;
-        private Button btDeslogueo;
+        public static List<Usuario> listaUsuarios;
+        public static List<Servicio> listaServicios;
+        public static List<Turno> listaTurnos;
+        private Button btClientesPorFecha;
+        private Button btClientesPorProfesional;
         //--------------------------------------------------------------------------------------
     }
 }

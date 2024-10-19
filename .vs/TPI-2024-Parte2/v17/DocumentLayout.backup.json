@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|c:\\users\\114r7in\\source\\repos\\tpi-2024-parte2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|c:\\users\\114r7in\\source\\repos\\tpi-2024-parte2\\clientesporprofesional.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:clientesporprofesional.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\clientesporprofesional.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:clientesporprofesional.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|c:\\users\\114r7in\\source\\repos\\tpi-2024-parte2\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\administrarservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:administrarservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\clientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:clientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|c:\\users\\114r7in\\source\\repos\\tpi-2024-parte2\\clases\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:clases\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,68 +22,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Clientes.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Clientes.cs",
-              "RelativeDocumentMoniker": "Clientes.cs",
-              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Clientes.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Clientes.cs [Dise\u00F1o]",
+              "DocumentIndex": 2,
+              "Title": "Turno.cs",
+              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Clases\\Turno.cs",
+              "RelativeDocumentMoniker": "Clases\\Turno.cs",
+              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Clases\\Turno.cs",
+              "RelativeToolTip": "Clases\\Turno.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T17:46:13.823Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdministrarServicios.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\AdministrarServicios.cs",
-              "RelativeDocumentMoniker": "AdministrarServicios.cs",
-              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\AdministrarServicios.cs [Dise\u00F1o]",
-              "RelativeToolTip": "AdministrarServicios.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T22:58:46.212Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-10-19T09:00:42.763Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Login.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.cs",
-              "RelativeDocumentMoniker": "Login.cs",
-              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Login.cs [Dise\u00F1o]",
+              "Title": "ClientesPorProfesional.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\ClientesPorProfesional.cs",
+              "RelativeDocumentMoniker": "ClientesPorProfesional.cs",
+              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\ClientesPorProfesional.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ClientesPorProfesional.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T11:32:28.903Z",
+              "WhenOpened": "2024-10-18T23:55:25.385Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.cs",
-              "RelativeDocumentMoniker": "Login.cs",
-              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.cs",
-              "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAcwFMAAAAAAAAAAAAAAA==",
+              "Title": "ClientesPorProfesional.cs",
+              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\ClientesPorProfesional.cs",
+              "RelativeDocumentMoniker": "ClientesPorProfesional.cs",
+              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\ClientesPorProfesional.cs",
+              "RelativeToolTip": "ClientesPorProfesional.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T09:07:49.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.Designer.cs",
-              "RelativeDocumentMoniker": "Login.Designer.cs",
-              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.Designer.cs",
-              "RelativeToolTip": "Login.Designer.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAB0BAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T23:59:38.687Z",
+              "WhenOpened": "2024-10-18T23:52:43.371Z",
               "EditorCaption": ""
             }
           ]

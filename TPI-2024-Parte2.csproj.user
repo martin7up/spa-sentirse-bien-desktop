@@ -4,7 +4,13 @@
     <Compile Update="AdministrarServicios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Clientes.cs">
+    <Compile Update="ClientesPorFecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ClientesPorProfesional.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ClientesTodos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Login.cs">
