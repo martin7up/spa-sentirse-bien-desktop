@@ -2,6 +2,10 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using TPI_2024_Parte2.Clases;
+using TPI_2024_Parte2.ClasesUtilitarias;
+using System.Threading.Tasks;
+using System.Drawing;
+using Google.Cloud.Firestore;
 
 /*
  * La idea es que la app trabaje con 4 listas, todas populadas con la informacion correspondiente en la Base de Datos remota.
@@ -14,18 +18,43 @@ namespace TPI_2024_Parte2
 {
     public partial class Login : Form
     {
-        private string usuario;
+
+        public static BaseDeDatos bd = new(); //Conexion a BD        
+        public static string usuario;
         private string pass;
+
         public Login()
         {
             InitializeComponent();
 
+            this.Text = "Ningun usuario logueado";
+
+            foreach (Button btn in panelIzquierdo.Controls)
+            {
+                btn.Enabled = false;
+            }
+
             btDeslogueo.Visible = false;
 
-            //Trabajar de momento sin conectar a BD-------------------------------------------------------------
-            var json = File.ReadAllText(@"C:\Users\114R7IN\source\repos\pruebas-FireBase\JASONES\usuarios.json");
-            listaUsuarios = JsonSerializer.Deserialize<List<Usuario>>(json);
-            //--------------------------------------------------------------------------------------------------
+            //Recuperado, serializado, des-serializado y carga de colecciones
+            cargaUsuarios();
+            cargarServicios();
+            cargarTurnos();
+            cargarCategorias();
+
+            //Esto es solo para pruebas y no agotar las consultas a BD, comentar al momento de entregar
+            //var json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Usuarios.json");
+            //listaUsuarios = JsonSerializer.Deserialize<List<Usuario>>(json);
+
+            //json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Turnos.json");
+            //listaTurnos = JsonSerializer.Deserialize<List<Turno>>(json);
+
+            //json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Servicios.json");
+            //listaServicios = JsonSerializer.Deserialize<List<Servicio>>(json);
+
+            //json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Categorias.json");
+            //listaCategorias = JsonSerializer.Deserialize<List<CategoriaServicio>>(json);
+
 
         }
         private bool ShowMainMenuStrip()
@@ -55,15 +84,8 @@ namespace TPI_2024_Parte2
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (FormServicios is null)
-            {
-                FormServicios = new();
-                FormServicios.ShowDialog();
-            }
-            else
-            {
-                FormServicios.ShowDialog();
-            }
+            FormServicios = new();
+            mostrarForm(FormServicios);
         }
 
         private void btnIngReg_Click(object sender, EventArgs e)
@@ -91,15 +113,10 @@ namespace TPI_2024_Parte2
                 btDeslogueo.Visible = true;
                 checkBoxSoyNuevo.Enabled = false;
 
-                //Trabajar de momento sin conectar a BD-------------------------------------------------------------
-                var json = File.ReadAllText(@"C:\Users\114R7IN\source\repos\pruebas-FireBase\JASONES\turnos.json");
-                listaTurnos = JsonSerializer.Deserialize<List<Turno>>(json);
 
-                json = File.ReadAllText(@"C:\Users\114R7IN\source\repos\pruebas-FireBase\JASONES\servicios.json");
-                listaServicios = JsonSerializer.Deserialize<List<Servicio>>(json);
-                //--------------------------------------------------------------------------------------------------
+                accesosFuncionalidades(usuarioLogeado.rol);
 
-                MessageBox.Show($"Usuario : {usuarioLogeado.username}; tu rol es : {usuarioLogeado.rol}");
+                MessageBox.Show($"Bienvenido/a {usuarioLogeado.username}");
             }
             else
             {
@@ -122,13 +139,14 @@ namespace TPI_2024_Parte2
             limpiarCampos();
 
             checkBoxSoyNuevo.Enabled = true;
+            MessageBox.Show($"Hasta la proxima {usuarioLogeado.username}");
             usuarioLogeado = null;
 
             //Se pasan las listas a null
             listaTurnos = null;
             listaServicios = null;
 
-            MessageBox.Show($"El usuario se ha deslogueado correctamente >>> {usuarioLogeado is null}");
+            this.Text = "Ningun usuario logueado";
         }
 
         private void limpiarCampos()
@@ -137,28 +155,133 @@ namespace TPI_2024_Parte2
             mtBoxUsuarioPass.ResetText();
         }
 
+        public static async Task cargaUsuarios()
+        {
+
+            await bd.obtenerUsuariosYSerializar();//Ademas de recuperar la coleccion completa, genera un .json con la coleccion que recupero.
+            var json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Usuarios.json");
+            listaUsuarios = JsonSerializer.Deserialize<List<Usuario>>(json);
+        }
+
+        public static async Task cargarTurnos()
+        {
+            await bd.obtenerTurnosYSerializar();//Ademas de recuperar la coleccion completa, genera un .json con la coleccion que recupero.
+            var json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Turnos.json");
+            listaTurnos = JsonSerializer.Deserialize<List<Turno>>(json);
+        }
+
+        public static async Task cargarServicios()
+        {
+            await bd.obtenerServiciosYSerializar();//Ademas de recuperar la coleccion completa, genera un .json con la coleccion que recupero.
+            var json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Servicios.json");
+            listaServicios = JsonSerializer.Deserialize<List<Servicio>>(json);//Se des-serializa para dejar disponible la coleccion
+        }
+
+        public static async Task cargarCategorias()
+        {
+            await bd.obtenerCategoriaServiciosYSerializar();//Ademas de recuperar la coleccion completa, genera un .json con la coleccion que recupero.
+            var json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Categorias.json");
+            listaCategorias = JsonSerializer.Deserialize<List<CategoriaServicio>>(json);
+        }
+
         private void btClientesPorFecha_Click(object sender, EventArgs e)
         {
             formuClientesPorFecha = new();
-            formuClientesPorFecha.ShowDialog();
+            mostrarForm(formuClientesPorFecha);
         }
 
         private void btClientesTodos_Click(object sender, EventArgs e)
         {
             formuClientesTodos = new();
-            formuClientesTodos.ShowDialog();
+            mostrarForm(formuClientesTodos);
         }
 
         private void btClientesPorProfesional_Click(object sender, EventArgs e)
         {
             formuClientesPorProfesional = new();
-            formuClientesPorProfesional.ShowDialog();
+            mostrarForm(formuClientesPorProfesional);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             formuFactura = new();
-            formuFactura.ShowDialog();
+            mostrarForm(formuFactura);
         }
+
+        private void accesosFuncionalidades(string rol)
+        {
+            foreach (Button btn in panelIzquierdo.Controls)
+            {
+                btn.Enabled = false;
+            }
+
+            if (rol == "admin")
+            {
+                foreach (Button btn in panelIzquierdo.Controls)
+                {
+                    btn.Enabled = true;
+                }
+                this.Text = "Logueado como Administrador";
+                return;
+            }
+
+            if (rol == "personal")
+            {
+                this.Text = "Logueado como Personal";
+                btClientesPorProfesional.Enabled = true;
+                return;
+            }
+
+            if (rol == "administrativo")
+            {
+                btClientesPorFecha.Enabled = true;
+                btClientesTodos.Enabled = true;
+                pagosPorCliente.Enabled = true;
+                this.Text = "Logueado como Administrativo";
+                return;
+            }
+            MessageBox.Show("Que raro... no eres un tipo de usuario valido... comunicate con el administrado lo antes posible.");
+        }
+
+        private void mostrarForm(Form form)
+        {
+
+            foreach (Control control in pWelcome.Controls)
+            {
+                if (control is Form)
+                {
+
+                    control.Dispose();
+
+                }
+            }
+
+            panelLogin.Visible = false;
+
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None; 
+            form.Dock = DockStyle.Fill; 
+
+            pWelcome.Controls.Add(form);
+            form.Show();
+        }
+
+
     }
 }
+
+
+
+/*
+    var json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Usuarios.json");
+    listaUsuarios = JsonSerializer.Deserialize<List<Usuario>>(json);
+
+    json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Turnos.json");
+    listaTurnos = JsonSerializer.Deserialize<List<Turno>>(json);
+
+    json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Servicios.json");
+    listaServicios = JsonSerializer.Deserialize<List<Servicio>>(json);
+
+    json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Categorias.json");
+    listaCategorias = JsonSerializer.Deserialize<List<CategoriaServicio>>(json);
+  */

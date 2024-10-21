@@ -1,4 +1,5 @@
 using TPI_2024_Parte2.Clases;
+using TPI_2024_Parte2.ClasesUtilitarias;
 
 namespace TPI_2024_Parte2
 {
@@ -8,13 +9,15 @@ namespace TPI_2024_Parte2
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
+
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Login());
-
+            
+            
         }
     }
 }

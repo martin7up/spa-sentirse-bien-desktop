@@ -34,12 +34,12 @@
             Fecha = new DataGridViewTextBoxColumn();
             Profesional = new DataGridViewTextBoxColumn();
             panelClientesPorProfesional = new Panel();
+            button1 = new Button();
             btGenerarInforme = new Button();
             checkBoxGenerarInforme = new CheckBox();
             checkBoxCalendario = new CheckBox();
             monthCalendar1 = new MonthCalendar();
             cbPersonal = new ComboBox();
-            rbClientesPorProfesional = new RadioButton();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridPorProfesional).BeginInit();
             panelClientesPorProfesional.SuspendLayout();
@@ -86,21 +86,31 @@
             // 
             // panelClientesPorProfesional
             // 
+            panelClientesPorProfesional.Controls.Add(button1);
             panelClientesPorProfesional.Controls.Add(btGenerarInforme);
             panelClientesPorProfesional.Controls.Add(checkBoxGenerarInforme);
             panelClientesPorProfesional.Controls.Add(checkBoxCalendario);
             panelClientesPorProfesional.Controls.Add(monthCalendar1);
             panelClientesPorProfesional.Controls.Add(cbPersonal);
-            panelClientesPorProfesional.Controls.Add(rbClientesPorProfesional);
             panelClientesPorProfesional.Controls.Add(label1);
             panelClientesPorProfesional.Location = new Point(640, 12);
             panelClientesPorProfesional.Name = "panelClientesPorProfesional";
             panelClientesPorProfesional.Size = new Size(272, 429);
             panelClientesPorProfesional.TabIndex = 6;
             // 
+            // button1
+            // 
+            button1.Location = new Point(194, 402);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 10;
+            button1.Text = "CERRAR";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // btGenerarInforme
             // 
-            btGenerarInforme.Location = new Point(12, 387);
+            btGenerarInforme.Location = new Point(6, 335);
             btGenerarInforme.Name = "btGenerarInforme";
             btGenerarInforme.Size = new Size(248, 23);
             btGenerarInforme.TabIndex = 9;
@@ -111,7 +121,7 @@
             // checkBoxGenerarInforme
             // 
             checkBoxGenerarInforme.AutoSize = true;
-            checkBoxGenerarInforme.Location = new Point(12, 362);
+            checkBoxGenerarInforme.Location = new Point(6, 310);
             checkBoxGenerarInforme.Name = "checkBoxGenerarInforme";
             checkBoxGenerarInforme.Size = new Size(112, 19);
             checkBoxGenerarInforme.TabIndex = 8;
@@ -122,7 +132,7 @@
             // checkBoxCalendario
             // 
             checkBoxCalendario.AutoSize = true;
-            checkBoxCalendario.Location = new Point(12, 157);
+            checkBoxCalendario.Location = new Point(6, 105);
             checkBoxCalendario.Name = "checkBoxCalendario";
             checkBoxCalendario.Size = new Size(235, 19);
             checkBoxCalendario.TabIndex = 7;
@@ -132,7 +142,7 @@
             // 
             // monthCalendar1
             // 
-            monthCalendar1.Location = new Point(12, 188);
+            monthCalendar1.Location = new Point(6, 136);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 6;
             monthCalendar1.DateSelected += monthCalendar1_DateSelected;
@@ -140,27 +150,17 @@
             // cbPersonal
             // 
             cbPersonal.FormattingEnabled = true;
-            cbPersonal.Location = new Point(3, 70);
+            cbPersonal.Location = new Point(3, 30);
             cbPersonal.Name = "cbPersonal";
             cbPersonal.Size = new Size(248, 23);
             cbPersonal.TabIndex = 3;
             cbPersonal.DropDown += cbPersonal_DropDown;
             cbPersonal.SelectedIndexChanged += cbPersonal_SelectedIndexChanged;
             // 
-            // rbClientesPorProfesional
-            // 
-            rbClientesPorProfesional.AutoSize = true;
-            rbClientesPorProfesional.Location = new Point(119, 3);
-            rbClientesPorProfesional.Name = "rbClientesPorProfesional";
-            rbClientesPorProfesional.Size = new Size(150, 19);
-            rbClientesPorProfesional.TabIndex = 5;
-            rbClientesPorProfesional.Text = "Clientes por Profesional";
-            rbClientesPorProfesional.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 40);
+            label1.Location = new Point(3, 6);
             label1.Name = "label1";
             label1.Size = new Size(142, 15);
             label1.TabIndex = 2;
@@ -170,11 +170,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(924, 450);
+            ClientSize = new Size(921, 449);
             Controls.Add(panelClientesPorProfesional);
             Controls.Add(dataGridPorProfesional);
             Name = "ClientesPorProfesional";
             Text = "ClientesPorProfesional";
+            FormClosing += ClientesPorProfesional_FormClosing;
+            FormClosed += ClientesPorProfesional_FormClosed;
             ((System.ComponentModel.ISupportInitialize)dataGridPorProfesional).EndInit();
             panelClientesPorProfesional.ResumeLayout(false);
             panelClientesPorProfesional.PerformLayout();
@@ -186,7 +188,6 @@
         private Panel panelClientesPorProfesional;
         private ComboBox cbPersonal;
         private Label label1;
-        private RadioButton rbClientesPorProfesional;
         private DataGridViewTextBoxColumn nombreCliente;
         private DataGridViewTextBoxColumn hsTurno;
         private DataGridViewTextBoxColumn Fecha;
@@ -195,5 +196,6 @@
         private CheckBox checkBoxCalendario;
         private Button btGenerarInforme;
         private CheckBox checkBoxGenerarInforme;
+        private Button button1;
     }
 }

@@ -1,35 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.IO;
 using TPI_2024_Parte2.Clases;
 using iTextSharp.text.pdf.draw;
 using System.Diagnostics;
 
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using TPI_2024_Parte2.Clases;
 
 namespace TPI_2024_Parte2
 {//Faltaria poder cambiar el valor de is_pagado y impactarlo en BD
@@ -39,8 +15,14 @@ namespace TPI_2024_Parte2
         private Factura factura;
         public GenerarFactura()
         {
+
             InitializeComponent();
             cargarComboBox();
+            panelPago.Enabled = false;
+            dataGridTurnosDelCliente.Rows.Clear();
+            btHabDeshab.Text = "";
+
+            this.Text = Login.usuario;
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -75,7 +57,7 @@ namespace TPI_2024_Parte2
             foreach (Turno turno in turnos)
             {
                 servicio = Login.listaServicios.Where(s => s.id == turno.servicio_id).First();
-                dataGridTurnosDelCliente.Rows.Add(cliente.username, cliente.direccion, turno.fechaTurno().ToString("d"), turno.fechaTurno().ToString("t"), turno.is_pagado, servicio.precio);
+                dataGridTurnosDelCliente.Rows.Add(cliente.username, cliente.direccion, turno.fechaTurno().ToString("d"), turno.fechaTurno().ToString("t"), turno.is_pagado ? "Pagado" : "Pendiente", servicio.precio, turno.metodo_de_pago, turno.is_cancelado ? "Cancelado" : "Vigente", turno.id);
             }
         }
         private void cargarComboBox()
@@ -91,7 +73,7 @@ namespace TPI_2024_Parte2
         }
         private void btGenerarFactura_Click(object sender, EventArgs e)
         {
-            if(dataGridTurnosDelCliente.SelectedRows.Count != 1)
+            if (dataGridTurnosDelCliente.SelectedRows.Count != 1)
             {
                 MessageBox.Show("Seleccione algun registro para generar la factura.");
                 return;
@@ -106,15 +88,6 @@ namespace TPI_2024_Parte2
             factura.FechaTurno = cell[2].Value.ToString();
             factura.HorarioDelTurno = cell[3].Value.ToString();
             factura.Precio = cell[5].Value.ToString();
-
-            //var json = JsonSerializer.Serialize(factura, new JsonSerializerOptions
-            //{
-            //    WriteIndented = true // For better readability of the JSON file
-            //});
-
-            //File.WriteAllText(@"C:\Users\114R7IN\Desktop\Facturas-App\"+$"factura-{factura.NombreCliente}.json", json);
-
-            //MessageBox.Show("Factura generada.");
 
             string logoPath = @"C:\Users\114R7IN\Desktop\Facturas-App\logo.jpg"; // Cambia esto a la ruta de tu logo
             string pdfPath = @"C:\Users\114R7IN\Desktop\Facturas-App" + $"factura-{factura.NombreCliente}.pdf";
@@ -236,7 +209,75 @@ namespace TPI_2024_Parte2
                 MessageBox.Show("Error al generar el PDF: " + ex.Message);
             }
 
+        }
 
+        private void dataGridTurnosDelCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            panelPago.Enabled = dataGridTurnosDelCliente.SelectedRows[0].Cells[4].Value.ToString().Equals("Pendiente");
+            btHabDeshab.Text = dataGridTurnosDelCliente.SelectedRows[0].Cells[7].Value.ToString().Equals("Cancelado") ? "Restaurar Turno" : "Cancelar Turno";
+        }
+
+        private void btAsentarPago_Click(object sender, EventArgs e)
+        {
+            string medio = "";
+
+            if (rbCredito.Checked) medio = rbCredito.Text.ToLower();
+            if (rbDebito.Checked) medio = rbDebito.Text.ToLower();
+            if (rbEfectivo.Checked) medio = rbEfectivo.Text.ToLower();
+            if (rbTransferencia.Checked) medio = rbTransferencia.Text.ToLower();
+
+            Login.bd.pagarUnTurno(dataGridTurnosDelCliente.SelectedRows[0].Cells[8].Value.ToString(), medio);//>>>Modificacion en BD
+
+            MessageBox.Show($"Pago efectuado; medio : {medio}");
+
+            //MessageBox.Show($"Pago efectuado; id turno : {dataGridTurnosDelCliente.SelectedRows[0].Cells[8].Value.ToString()}");
+
+            Login.cargarTurnos();//>>>Carga desde BD
+
+            dataGridTurnosDelCliente.Rows.Clear();
+
+            panelPago.Enabled = false;
+
+            cargarDataGridTurnoDelCliente();
+
+        }
+
+        private void btHabDeshab_Click(object sender, EventArgs e)
+        {
+            bool valor = !dataGridTurnosDelCliente.SelectedRows[0].Cells[7].Value.ToString().Equals("Cancelado");
+
+            Login.bd.habilitarODeshabilitarUnTurno(dataGridTurnosDelCliente.SelectedRows[0].Cells[8].Value.ToString(), valor);//>>>Modificacion en BD
+
+            //MessageBox.Show($"Se modifico el turno {dataGridTurnosDelCliente.SelectedRows[0].Cells[8].Value.ToString()}");
+
+            MessageBox.Show("Turno modificado!");
+
+            Login.cargarTurnos();//>>>Carga desde BD
+
+            dataGridTurnosDelCliente.Rows.Clear();
+
+            btHabDeshab.Text = "";
+
+            cargarDataGridTurnoDelCliente();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var confirmacion = MessageBox.Show("Desea cerrar completamente esta ventana?",
+                                   "Si / No",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void GenerarFactura_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Login.panelLogin.Visible = true;
         }
     }
 }

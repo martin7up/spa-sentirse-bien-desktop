@@ -3,46 +3,64 @@
   "WorkspaceRootPath": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|c:\\users\\114r7in\\source\\repos\\tpi-2024-parte2\\generarfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:generarfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|c:\\users\\114r7in\\source\\repos\\tpi-2024-parte2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\generarfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:generarfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|c:\\users\\114r7in\\source\\repos\\tpi-2024-parte2\\clasesutilitarias\\basededatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:clasesutilitarias\\basededatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|c:\\users\\114r7in\\source\\repos\\tpi-2024-parte2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B267CE5A-2A97-4868-8B8B-6248DD6BC7F6}|TPI-2024-Parte2.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "DockedHeight": 200,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GenerarFactura.cs",
-              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\GenerarFactura.cs",
-              "RelativeDocumentMoniker": "GenerarFactura.cs",
-              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\GenerarFactura.cs",
-              "RelativeToolTip": "GenerarFactura.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAmwHYAAABPAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "BaseDeDatos.cs",
+              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\ClasesUtilitarias\\BaseDeDatos.cs",
+              "RelativeDocumentMoniker": "ClasesUtilitarias\\BaseDeDatos.cs",
+              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\ClasesUtilitarias\\BaseDeDatos.cs",
+              "RelativeToolTip": "ClasesUtilitarias\\BaseDeDatos.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAowEYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T21:30:17.403Z",
+              "WhenOpened": "2024-10-21T16:24:48.427Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GenerarFactura.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\GenerarFactura.cs",
-              "RelativeDocumentMoniker": "GenerarFactura.cs",
-              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\GenerarFactura.cs [Dise\u00F1o]",
-              "RelativeToolTip": "GenerarFactura.cs [Dise\u00F1o]",
+              "DocumentIndex": 0,
+              "Title": "Login.cs",
+              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.cs",
+              "RelativeDocumentMoniker": "Login.cs",
+              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.cs",
+              "RelativeToolTip": "Login.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwBoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T21:29:52.504Z"
+              "WhenOpened": "2024-10-21T15:52:09.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.cs",
+              "RelativeDocumentMoniker": "Login.cs",
+              "ToolTip": "C:\\Users\\114R7IN\\source\\repos\\TPI-2024-Parte2\\Login.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Login.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T15:52:06.808Z",
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }

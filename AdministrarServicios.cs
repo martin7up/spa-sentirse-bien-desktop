@@ -15,6 +15,8 @@ namespace TPI_2024_Parte2
         public AdministrarServicios()
         {
             InitializeComponent();
+
+            this.Text = Login.usuario;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -22,6 +24,27 @@ namespace TPI_2024_Parte2
             label1.Enabled = (sender as CheckBox).Checked;
         }
 
+        private void btCerrar_Click(object sender, EventArgs e)
+        {
+            var confirmacion = MessageBox.Show("Desea cerrar completamente esta ventana?",
+                                   "Si / No",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
 
+            if (confirmacion == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void AdministrarServicios_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            /*Nada por aqui de momen*/
+        }
+
+        private void AdministrarServicios_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Login.panelLogin.Visible = true;
+        }
     }
 }

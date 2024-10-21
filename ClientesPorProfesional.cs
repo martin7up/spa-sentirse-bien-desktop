@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,6 +30,8 @@ namespace TPI_2024_Parte2
             monthCalendar1.MaxSelectionCount = 1;
             monthCalendar1.Enabled = false;
             btGenerarInforme.Enabled = false;
+
+            this.Text = Login.usuario;
         }
         //------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -59,7 +63,7 @@ namespace TPI_2024_Parte2
         }
         private void checkBoxCalendario_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox cc = sender as CheckBox;    //Recordando la RestoApp de Prog 3
+            CheckBox cc = sender as CheckBox;
             monthCalendar1.Enabled = cc.Checked;
             fechaSeleccionada = DateTime.Now.Date;
         }
@@ -137,7 +141,6 @@ namespace TPI_2024_Parte2
                 }
             }
         }
-
         private void btGenerarInforme_Click(object sender, EventArgs e)
         {
             DateTime inicio = monthCalendar1.SelectionStart;
@@ -145,7 +148,9 @@ namespace TPI_2024_Parte2
             List<DateTime> selectedDates = new List<DateTime>();
 
             for (DateTime date = inicio; date <= fin; date = date.AddDays(1))
+            {
                 selectedDates.Add(date.Date);
+            }
 
             if (selectedDates.Count == 0) return;
 
@@ -154,7 +159,7 @@ namespace TPI_2024_Parte2
 
             if (servicios.Count() == 0) return;
 
-            InformePorProfesionalEnRango informeRangoPorProfesional= new();// Ver si corresponde colocar mas abajo
+            InformePorProfesionalEnRango informeRangoPorProfesional = new();// Ver si corresponde colocar mas abajo
             informeRangoPorProfesional.FechaDeInforme = DateTime.Now.ToString("d");//Fecha y hora en la que se esta confeccionando el informe
             informeRangoPorProfesional.ListaInforme = new();
 
@@ -162,7 +167,7 @@ namespace TPI_2024_Parte2
             {
 
                 InformeProfesionalEnUnDia informeDia = new(); //Nombre de clase y de vble erroneos, deberia ser InformeDeUnTurno informeTurno ...
-                
+
                 foreach (Servicio servicio in servicios)
                 {
                     IEnumerable<Turno> turnos = Login.listaTurnos.Where(t => t.fechaSolo() == fecha).Where(t => t.servicio_id == servicio.id);
@@ -188,44 +193,86 @@ namespace TPI_2024_Parte2
                 }
             }
 
-            //------------------------------------------------------------INFORME DE SERVICIOS ATENDIDOS POR UN PROFESIONAL EN UN RANGO DE DIAS----------------------------
+            // Generar PDF
+            Document documento = new Document();
+            string rutaArchivo = @"C:\Users\114R7IN\Desktop\Informes-Por-Profesional\" + $"{profesional.username}-InformeRango_{inicio.ToString("yyyyMMdd")}_{fin.ToString("yyyyMMdd")}.pdf";
 
-            string fechaCreacionInforme = informeRangoPorProfesional.FechaDeInforme;
+            try
+            {
+                PdfWriter writer = PdfWriter.GetInstance(documento, new FileStream(rutaArchivo, FileMode.Create));
+                documento.Open();
 
-            string desde_hasta = $"Desde el {selectedDates.First().ToString("d")} hasta el {selectedDates.Last().ToString("d")}"; //Las fechas que cubre el informe
+                // Cargar el logo
+                string rutaLogo = @"C:\Users\114R7IN\Desktop\Facturas-App\logo.jpg"; // Cambia esta ruta al logo que desees
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(rutaLogo);
+                logo.ScaleToFit(100f, 100f); // Ajusta el tamaño del logo
+                logo.Alignment = Element.ALIGN_CENTER; // Alinea el logo en el centro
+                documento.Add(logo); // Agrega el logo al documento
 
-            string[] aux = new string[7];
 
-            foreach (InformeProfesionalEnUnDia infor in informeRangoPorProfesional.ListaInforme)
-            {//COMIENZO DEL INFORME DEL TURNO ATENDIDO POR EL PROFESIONAL
-                aux[0] = infor.FechaTurno;
-                aux[1] = infor.HoraTurno;
-                aux[2] = infor.Cliente;
-                aux[3] = infor.DireccionCliente;
-                aux[4] = infor.NombreServicio;
-                aux[5] = infor.PrecioServicio.ToString();
-                aux[6] = infor.Profesional;
-                //CONTINUA AL SIGUIENTE TURNO SI LO HAY, Y ASI ...
+
+                // Título del informe
+                documento.Add(new Paragraph($"Informe de Servicios Atendidos por {profesional.username}"));
+                documento.Add(new Paragraph($"Desde el {selectedDates.First().ToString("d")} hasta el {selectedDates.Last().ToString("d")}"));
+                documento.Add(new Paragraph("Fecha de Creación del Informe: " + informeRangoPorProfesional.FechaDeInforme));
+                documento.Add(new Paragraph("\n"));
+
+                // Crear tabla
+                PdfPTable tabla = new PdfPTable(7); // 7 columnas: Fecha, Hora, Cliente, Dirección, Servicio, Precio, Profesional
+                tabla.AddCell("Fecha del Turno");
+                tabla.AddCell("Hora del Turno");
+                tabla.AddCell("Cliente");
+                tabla.AddCell("Dirección del Cliente");
+                tabla.AddCell("Servicio");
+                tabla.AddCell("Precio");
+                tabla.AddCell("Profesional");
+
+                // Llenar la tabla con los datos del informe
+                foreach (InformeProfesionalEnUnDia informe in informeRangoPorProfesional.ListaInforme)
+                {
+                    tabla.AddCell(informe.FechaTurno);
+                    tabla.AddCell(informe.HoraTurno);
+                    tabla.AddCell(informe.Cliente);
+                    tabla.AddCell(informe.DireccionCliente);
+                    tabla.AddCell(informe.NombreServicio);
+                    tabla.AddCell(informe.PrecioServicio.ToString("C"));
+                    tabla.AddCell(informe.Profesional);
+                }
+
+                // Agregar la tabla al documento
+                documento.Add(tabla);
+                documento.Close();
+
+                MessageBox.Show($"Informe generado correctamente!");
             }
-
-
-
-
-
-
-            //-----------------------------------------------------------------------------------------------------------------------------------
-
-            //var json = JsonSerializer.Serialize(informeRangoPorProfesional, new JsonSerializerOptions
-            //{
-            //    WriteIndented = true // For better readability of the JSON file
-            //});
-
-            //File.WriteAllText(@"C:\Users\114R7IN\Desktop\Informes-Por-Profesional\"+$"{profesional.username}-informeRangoServicios.json", json);
-
-            //MessageBox.Show("Informe generado.");
-
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al generar el informe: {ex.Message}");
+            }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var confirmacion = MessageBox.Show("Desea cerrar completamente esta ventana?",
+                                   "Si / No",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void ClientesPorProfesional_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Profesional = null;
+        }
+
+        private void ClientesPorProfesional_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Login.panelLogin.Visible = true;
+        }
         //------------------------------------------------------------------------------------------------------------------------------------------------
     }
 }

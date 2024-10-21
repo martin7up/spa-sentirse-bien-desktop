@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +20,8 @@ namespace TPI_2024_Parte2
         {
             InitializeComponent();
             monthCalendar1.MaxSelectionCount = 1;
+
+            this.Text = Login.usuario;
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
@@ -29,8 +33,6 @@ namespace TPI_2024_Parte2
         private void cargarClientesTodosPorFecha(DateTime fechaDesdeCalendario)
         {
 
-            MessageBox.Show($"Fecha {fechaDesdeCalendario.ToString("D")}");
-
             dataGridClientesPorFecha.Rows.Clear();
 
             //Se recuperan todos los turnos que coinciden con la fecha seleccionada
@@ -38,7 +40,7 @@ namespace TPI_2024_Parte2
 
             if (turnosEnFecha.Count() == 0)
             {
-                MessageBox.Show($"Ningun turno en la fecha {fechaDesdeCalendario.ToString("d")}");
+
                 return;
             }
 
@@ -61,7 +63,7 @@ namespace TPI_2024_Parte2
 
             if (turnosEnFecha.Count() == 0)
             {
-                MessageBox.Show($"No se registro ningun pago en {fechaSeleccionada.ToString("d")}");
+
                 return;
             }
 
@@ -95,32 +97,48 @@ namespace TPI_2024_Parte2
                 }
 
             }
+            MessageBox.Show($"Credito{informe.PagosCredito}-Debito{informe.PagosDebito}-Efectivo{informe.PagosEfectivo}-Transf{informe.PagosTransferencia}");
 
-            //----------------------------------INFORME DE INGRESOS EN UNA FECHA-----------------------------------------------------------------------------------------------
-            string fechaCreacionDeInforme = DateTime.Now.ToString("d"); //(para titulo digamos)
+            // Generación del PDF
+            Document documento = new Document();
+            string rutaArchivo = @"C:\Users\114R7IN\Desktop\Informes-En-Fecha" + fechaSeleccionada.ToString("yyyyMMdd") + ".pdf";
 
-            string[] aux = new string[5]; //Array contenedor de un bloque, no hay mas.
-    
-            aux[0] = informe.Fecha; //En la que se esta averiguado cuanto se facturo
-            aux[1] = informe.PagosCredito.ToString();
-            aux[2] = informe.PagosDebito.ToString();
-            aux[3] = informe.PagosEfectivo.ToString();
-            aux[4] = informe.PagosTransferencia.ToString();
-            //Fin del unico bloque.
-            
-            //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            try
+            {
+                PdfWriter writer = PdfWriter.GetInstance(documento, new FileStream(rutaArchivo, FileMode.Create));
+                documento.Open();
 
+                string rutaLogo = @"C:\Users\114R7IN\Desktop\Facturas-App\logo.jpg"; // Cambia esta ruta al logo que desees
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(rutaLogo);
+                logo.ScaleToFit(100f, 100f); // Ajusta el tamaño del logo
+                logo.Alignment = Element.ALIGN_CENTER; // Alinea el logo en el centro
+                documento.Add(logo); // Agrega el logo al documento
 
-            //informe.Fecha = fechaSeleccionada.ToString("d");
+                documento.Add(new Paragraph("Informe de Pagos - Fecha: " + fechaSeleccionada.ToString("d")));
+                documento.Add(new Paragraph("\n"));
 
-            //var json = JsonSerializer.Serialize(informe, new JsonSerializerOptions
-            //{
-            //    WriteIndented = true // For better readability of the JSON file
-            //});
+                PdfPTable tabla = new PdfPTable(5);
+                tabla.AddCell("Fecha");
+                tabla.AddCell("Pagos Crédito");
+                tabla.AddCell("Pagos Débito");
+                tabla.AddCell("Pagos Efectivo");
+                tabla.AddCell("Pagos Transferencia");
 
-            //File.WriteAllText(@"C:\Users\114R7IN\Desktop\Informes-En-Fecha\informe.json", json);
+                tabla.AddCell(fechaSeleccionada.ToString("d"));
+                tabla.AddCell(informe.PagosCredito.ToString("C"));
+                tabla.AddCell(informe.PagosDebito.ToString("C"));
+                tabla.AddCell(informe.PagosEfectivo.ToString("C"));
+                tabla.AddCell(informe.PagosTransferencia.ToString("C"));
 
-            //MessageBox.Show("Informe generado.");
+                documento.Add(tabla);
+                documento.Close();
+
+                MessageBox.Show($"Informe generado correctamente!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al generar el informe: {ex.Message}");
+            }
         }
 
         private void generarInformeEnUnRangoDeFechas()//Se discrimina por tipo de pago
@@ -130,8 +148,8 @@ namespace TPI_2024_Parte2
             List<DateTime> selectedDates = new List<DateTime>();
 
             for (DateTime date = inicio; date <= fin; date = date.AddDays(1))
-                selectedDates.Add(date.Date);       
-            
+                selectedDates.Add(date.Date);
+
             InformePorRangoDeFechas informeRango = new();
             informeRango.RangoDeInformes = new();//Instancia para la lista de Informes por cada fecha en el rango
             foreach (DateTime date in selectedDates)
@@ -166,42 +184,77 @@ namespace TPI_2024_Parte2
                 informeRango.RangoDeInformes.Add(informe);
             }
 
-            //----------------------------------INFORME DE INGRESOS EN UN RANGO DE FECHAS-----------------------------------------------------------------------------------------------
-            string desde_hasta = $"{selectedDates.First().ToString("d")} >>> {selectedDates.Last().ToString("d")}"; //Fechas desde y hasta en la consulta del informe(para titulo digamos)
-            
-            string[] aux = new string[5]; //Array contenedor de un bloque del informe; es Un informe de informes en este caso
-            
-            foreach(InformePorFecha informe in informeRango.RangoDeInformes)
+            // Generación del PDF
+            Document documento = new Document();
+            string rutaArchivo = @"C:\Users\114R7IN\Desktop\Informes-Por-Rango" + inicio.ToString("yyyyMMdd") + "_" + fin.ToString("yyyyMMdd") + ".pdf";
+
+            try
             {
-                aux[0] = informe.Fecha;
-                aux[1] = informe.PagosCredito.ToString();
-                aux[2] = informe.PagosDebito.ToString();
-                aux[3] = informe.PagosEfectivo.ToString();
-                aux[4] = informe.PagosTransferencia.ToString();
-                //Fin primer bloque; continua al segundo si lo hay, luego al tercero si lo hay, etc...
+                PdfWriter writer = PdfWriter.GetInstance(documento, new FileStream(rutaArchivo, FileMode.Create));
+                documento.Open();
+
+                documento.Add(new Paragraph($"Informe de Pagos - Rango de Fechas: {inicio.ToString("d")} a {fin.ToString("d")}"));
+                documento.Add(new Paragraph("\n"));
+
+                PdfPTable tabla = new PdfPTable(5);
+                tabla.AddCell("Fecha");
+                tabla.AddCell("Pagos Crédito");
+                tabla.AddCell("Pagos Débito");
+                tabla.AddCell("Pagos Efectivo");
+                tabla.AddCell("Pagos Transferencia");
+
+                foreach (InformePorFecha informe in informeRango.RangoDeInformes)
+                {
+                    tabla.AddCell(informe.Fecha);
+                    tabla.AddCell(informe.PagosCredito.ToString("C"));
+                    tabla.AddCell(informe.PagosDebito.ToString("C"));
+                    tabla.AddCell(informe.PagosEfectivo.ToString("C"));
+                    tabla.AddCell(informe.PagosTransferencia.ToString("C"));
+                }
+
+                documento.Add(tabla);
+                documento.Close();
+
+                MessageBox.Show($"Informe generado correctamente!");
             }
-            //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            //var json = JsonSerializer.Serialize(informeRango, new JsonSerializerOptions
-            //{
-            //    WriteIndented = true // For better readability of the JSON file
-            //});
-
-            //File.WriteAllText(@"C:\Users\114R7IN\Desktop\Informes-Por-Rango\informe-Rango.json", json);
-
-            //MessageBox.Show("Informe generado.");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al generar el informe: {ex.Message}");
+            }
         }
-
         private void checkBoxRangoFechas_CheckedChanged(object sender, EventArgs e)
         {
             monthCalendar1.MaxSelectionCount = checkBoxRangoFechas.Checked ? 31 : 1;
         }
-
         private void btGeneraInforme_Click(object sender, EventArgs e)
         {
             if (checkBoxRangoFechas.Checked)
                 generarInformeEnUnRangoDeFechas();
             else
                 generarInformeEnUnaFecha();
+        }
+
+        private void btCerrar_Click(object sender, EventArgs e)
+        {
+            var confirmacion = MessageBox.Show("Desea cerrar completamente esta ventana?",
+                                   "Si / No",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void ClientesPorFecha_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            monthCalendar1 = null;
+        }
+
+        private void ClientesPorFecha_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Login.panelLogin.Visible = true;
         }
     }
 }

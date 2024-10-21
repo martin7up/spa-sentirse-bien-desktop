@@ -18,6 +18,8 @@ namespace TPI_2024_Parte2
             InitializeComponent();
 
             cargarClientesTodos();
+
+            this.Text = Login.usuario;
         }
         private void cargarClientesTodos()
         {
@@ -25,6 +27,24 @@ namespace TPI_2024_Parte2
 
             foreach (Usuario user in Login.listaUsuarios)
                 dataGridClientes.Rows.Add(user.username, user.direccion, user.ciudad);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var confirmacion = MessageBox.Show("Desea cerrar completamente esta ventana?",
+                                   "Si / No",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void ClientesTodos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Login.panelLogin.Visible = true;
         }
     }
 }

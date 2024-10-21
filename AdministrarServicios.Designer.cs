@@ -29,12 +29,21 @@
         private void InitializeComponent()
         {
             dataGridServicios = new DataGridView();
+            Nombre = new DataGridViewTextBoxColumn();
+            Categoria = new DataGridViewTextBoxColumn();
+            Descripcion = new DataGridViewTextBoxColumn();
+            Precio = new DataGridViewTextBoxColumn();
+            Profesional = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
             checkBox1 = new CheckBox();
             textBox1 = new TextBox();
             panel3 = new Panel();
+            btCerrar = new Button();
+            rbModificarServicio = new RadioButton();
+            label8 = new Label();
+            comboBox1 = new ComboBox();
             button1 = new Button();
             label7 = new Label();
             calendarioServicios = new MonthCalendar();
@@ -47,14 +56,6 @@
             label3 = new Label();
             textBox2 = new TextBox();
             label2 = new Label();
-            comboBox1 = new ComboBox();
-            label8 = new Label();
-            rbModificarServicio = new RadioButton();
-            Nombre = new DataGridViewTextBoxColumn();
-            Categoria = new DataGridViewTextBoxColumn();
-            Descripcion = new DataGridViewTextBoxColumn();
-            Precio = new DataGridViewTextBoxColumn();
-            Profesional = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridServicios).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -78,6 +79,38 @@
             dataGridServicios.ShowEditingIcon = false;
             dataGridServicios.Size = new Size(614, 542);
             dataGridServicios.TabIndex = 0;
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.Name = "Nombre";
+            Nombre.ReadOnly = true;
+            // 
+            // Categoria
+            // 
+            Categoria.HeaderText = "Categoria";
+            Categoria.Name = "Categoria";
+            Categoria.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            Descripcion.HeaderText = "Descripcion";
+            Descripcion.Name = "Descripcion";
+            Descripcion.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            Precio.HeaderText = "Precio actual";
+            Precio.Name = "Precio";
+            Precio.ReadOnly = true;
+            // 
+            // Profesional
+            // 
+            Profesional.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            Profesional.HeaderText = "Profesional a Cargo";
+            Profesional.Name = "Profesional";
+            Profesional.ReadOnly = true;
+            Profesional.Width = 135;
             // 
             // panel1
             // 
@@ -128,6 +161,7 @@
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel3.Controls.Add(btCerrar);
             panel3.Controls.Add(rbModificarServicio);
             panel3.Controls.Add(label8);
             panel3.Controls.Add(comboBox1);
@@ -147,6 +181,46 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(337, 643);
             panel3.TabIndex = 5;
+            // 
+            // btCerrar
+            // 
+            btCerrar.Location = new Point(3, 614);
+            btCerrar.Name = "btCerrar";
+            btCerrar.Size = new Size(331, 23);
+            btCerrar.TabIndex = 21;
+            btCerrar.Text = "CERRAR ESTA VENTANA";
+            btCerrar.UseVisualStyleBackColor = true;
+            btCerrar.Click += btCerrar_Click;
+            // 
+            // rbModificarServicio
+            // 
+            rbModificarServicio.AutoSize = true;
+            rbModificarServicio.Location = new Point(206, 159);
+            rbModificarServicio.Name = "rbModificarServicio";
+            rbModificarServicio.Size = new Size(120, 19);
+            rbModificarServicio.TabIndex = 20;
+            rbModificarServicio.TabStop = true;
+            rbModificarServicio.Text = "Modificar Servicio";
+            rbModificarServicio.TextAlign = ContentAlignment.MiddleCenter;
+            rbModificarServicio.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(10, 190);
+            label8.Name = "label8";
+            label8.Size = new Size(170, 15);
+            label8.TabIndex = 19;
+            label8.Text = "Profesional a cargo del servicio";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(10, 208);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(317, 23);
+            comboBox1.Sorted = true;
+            comboBox1.TabIndex = 18;
             // 
             // button1
             // 
@@ -247,68 +321,6 @@
             label2.TabIndex = 4;
             label2.Text = "Nombre Servicio";
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(10, 208);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(317, 23);
-            comboBox1.Sorted = true;
-            comboBox1.TabIndex = 18;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(10, 190);
-            label8.Name = "label8";
-            label8.Size = new Size(170, 15);
-            label8.TabIndex = 19;
-            label8.Text = "Profesional a cargo del servicio";
-            // 
-            // rbModificarServicio
-            // 
-            rbModificarServicio.AutoSize = true;
-            rbModificarServicio.Location = new Point(206, 159);
-            rbModificarServicio.Name = "rbModificarServicio";
-            rbModificarServicio.Size = new Size(120, 19);
-            rbModificarServicio.TabIndex = 20;
-            rbModificarServicio.TabStop = true;
-            rbModificarServicio.Text = "Modificar Servicio";
-            rbModificarServicio.TextAlign = ContentAlignment.MiddleCenter;
-            rbModificarServicio.UseVisualStyleBackColor = true;
-            // 
-            // Nombre
-            // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            Nombre.ReadOnly = true;
-            // 
-            // Categoria
-            // 
-            Categoria.HeaderText = "Categoria";
-            Categoria.Name = "Categoria";
-            Categoria.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            Descripcion.HeaderText = "Descripcion";
-            Descripcion.Name = "Descripcion";
-            Descripcion.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            Precio.HeaderText = "Precio actual";
-            Precio.Name = "Precio";
-            Precio.ReadOnly = true;
-            // 
-            // Profesional
-            // 
-            Profesional.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            Profesional.HeaderText = "Profesional a Cargo";
-            Profesional.Name = "Profesional";
-            Profesional.ReadOnly = true;
-            Profesional.Width = 135;
-            // 
             // AdministrarServicios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -320,6 +332,8 @@
             Name = "AdministrarServicios";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AdministrarServicios";
+            FormClosing += AdministrarServicios_FormClosing;
+            FormClosed += AdministrarServicios_FormClosed;
             ((System.ComponentModel.ISupportInitialize)dataGridServicios).EndInit();
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
@@ -358,5 +372,6 @@
         private DataGridViewTextBoxColumn Descripcion;
         private DataGridViewTextBoxColumn Precio;
         private DataGridViewTextBoxColumn Profesional;
+        private Button btCerrar;
     }
 }

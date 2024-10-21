@@ -10,6 +10,7 @@ namespace TPI_2024_Parte2.Clases
     [FirestoreData]
     public class Turno
     {
+        //Propiedades FireBase-----------------------------------------------------------------------------------------------------
         [FirestoreProperty]
         public string? servicio_id { get; set; }
 
@@ -18,16 +19,16 @@ namespace TPI_2024_Parte2.Clases
 
         [FirestoreProperty]
         public Dictionary<string, long>? fecha { get; set; }
-        //AGREGAR ESTOS CAMPOS EN BASE DE DATOS FIREBASE
+
         [FirestoreProperty]
         public bool is_pagado { get; set; }
 
         [FirestoreProperty]
-        public bool? is_cancelado { get; set; }
+        public bool is_cancelado { get; set; }
 
         [FirestoreProperty]
         public string? metodo_de_pago { get; set; } //debito, efectivo, transferencia, credito >>> Un metodo de pago figura si o si pero no significa que se haya abonado el servicio
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+           
         //Propiedades extras-------------------------------------------------------------------------------------------------------
         public string? id { get; set; } //Aparece en BD pero como identificador y no como campo propio del documento
 

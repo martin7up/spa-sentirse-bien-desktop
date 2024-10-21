@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TPI_2024_Parte2.ClasesUtilitarias
 {
+
     static internal class Serializador
     {
         public static void serializarColeccion(ICollection coleccion, string ruta)

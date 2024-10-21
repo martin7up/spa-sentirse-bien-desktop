@@ -38,9 +38,9 @@ namespace TPI_2024_Parte2
             Horario = new DataGridViewTextBoxColumn();
             monthCalendar1 = new MonthCalendar();
             panelMostrarPorFecha = new Panel();
-            rbMostrarPorFecha = new RadioButton();
             checkBoxRangoFechas = new CheckBox();
             btGeneraInforme = new Button();
+            btCerrar = new Button();
             panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridClientesPorFecha).BeginInit();
             panelMostrarPorFecha.SuspendLayout();
@@ -100,29 +100,18 @@ namespace TPI_2024_Parte2
             // 
             // monthCalendar1
             // 
-            monthCalendar1.Location = new Point(9, 48);
+            monthCalendar1.Location = new Point(9, 26);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 1;
             monthCalendar1.DateSelected += monthCalendar1_DateSelected;
             // 
             // panelMostrarPorFecha
             // 
-            panelMostrarPorFecha.Controls.Add(rbMostrarPorFecha);
             panelMostrarPorFecha.Controls.Add(monthCalendar1);
             panelMostrarPorFecha.Location = new Point(590, 12);
             panelMostrarPorFecha.Name = "panelMostrarPorFecha";
             panelMostrarPorFecha.Size = new Size(272, 219);
             panelMostrarPorFecha.TabIndex = 1;
-            // 
-            // rbMostrarPorFecha
-            // 
-            rbMostrarPorFecha.AutoSize = true;
-            rbMostrarPorFecha.Location = new Point(9, 17);
-            rbMostrarPorFecha.Name = "rbMostrarPorFecha";
-            rbMostrarPorFecha.Size = new Size(122, 19);
-            rbMostrarPorFecha.TabIndex = 0;
-            rbMostrarPorFecha.Text = "Clientes por Fecha";
-            rbMostrarPorFecha.UseVisualStyleBackColor = true;
             // 
             // checkBoxRangoFechas
             // 
@@ -145,21 +134,33 @@ namespace TPI_2024_Parte2
             btGeneraInforme.UseVisualStyleBackColor = true;
             btGeneraInforme.Click += btGeneraInforme_Click;
             // 
+            // btCerrar
+            // 
+            btCerrar.Location = new Point(791, 426);
+            btCerrar.Name = "btCerrar";
+            btCerrar.Size = new Size(71, 23);
+            btCerrar.TabIndex = 4;
+            btCerrar.Text = "CERRAR";
+            btCerrar.UseVisualStyleBackColor = true;
+            btCerrar.Click += btCerrar_Click;
+            // 
             // ClientesPorFecha
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(865, 461);
+            Controls.Add(btCerrar);
             Controls.Add(btGeneraInforme);
             Controls.Add(checkBoxRangoFechas);
             Controls.Add(panelMostrarPorFecha);
             Controls.Add(panelGrid);
             Name = "ClientesPorFecha";
             Text = "Form1";
+            FormClosing += ClientesPorFecha_FormClosing;
+            FormClosed += ClientesPorFecha_FormClosed;
             panelGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridClientesPorFecha).EndInit();
             panelMostrarPorFecha.ResumeLayout(false);
-            panelMostrarPorFecha.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -177,9 +178,9 @@ namespace TPI_2024_Parte2
         private DateTime fechaSeleccionada = new();
         private MonthCalendar monthCalendar1;
         private Panel panelMostrarPorFecha;
-        private RadioButton rbMostrarPorFecha;
         private CheckBox checkBoxRangoFechas;
         private Button btGeneraInforme;
+        private Button btCerrar;
         //-----------------------------------------------------------------------------------------
     }
 }

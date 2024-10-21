@@ -32,6 +32,7 @@
             Nombre = new DataGridViewTextBoxColumn();
             Direccion = new DataGridViewTextBoxColumn();
             Ciudad = new DataGridViewTextBoxColumn();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridClientes).BeginInit();
             SuspendLayout();
             // 
@@ -73,14 +74,26 @@
             Ciudad.Name = "Ciudad";
             Ciudad.ReadOnly = true;
             // 
+            // button1
+            // 
+            button1.Location = new Point(712, 452);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 2;
+            button1.Text = "CERRAR";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // ClientesTodos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(799, 487);
+            Controls.Add(button1);
             Controls.Add(dataGridClientes);
             Name = "ClientesTodos";
             Text = "Form1";
+            FormClosed += ClientesTodos_FormClosed;
             ((System.ComponentModel.ISupportInitialize)dataGridClientes).EndInit();
             ResumeLayout(false);
         }
@@ -91,5 +104,6 @@
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Direccion;
         private DataGridViewTextBoxColumn Ciudad;
+        private Button button1;
     }
 }
