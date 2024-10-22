@@ -26,6 +26,16 @@ public class Servicio
 
     public override string ToString()
     {
-        return $"Nombre : {nombre}\nDescripcion : {descripcion.Substring(0,25)}...\nId : {id}\nPrecio : {precio}\n";
+        return $"Nombre : {nombre}; Precio : {precio} $";
+    }
+
+    public string descripcionLarga()
+    {
+        return $"Nombre : {nombre}\nDescripcion : {descripcion.Substring(0, 25)}...\nPrecio : {precio}\n";
+    }
+
+    public string descripcionCompleta()
+    {
+        return $"Nombre : {nombre}\nDescripcion : {descripcion}\nPrecio : {precio}\n";
     }
 }

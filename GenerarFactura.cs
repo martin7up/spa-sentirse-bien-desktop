@@ -17,6 +17,9 @@ namespace TPI_2024_Parte2
         {
 
             InitializeComponent();
+            
+            Login.cargarTurnos();
+
             cargarComboBox();
             panelPago.Enabled = false;
             dataGridTurnosDelCliente.Rows.Clear();
@@ -277,7 +280,7 @@ namespace TPI_2024_Parte2
 
         private void GenerarFactura_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login.panelLogin.Visible = true;
+            Login.refLogin.Visible = true;
         }
     }
 }

@@ -27,6 +27,8 @@ namespace TPI_2024_Parte2
         {
             InitializeComponent();
 
+            refLogin = panelLogin;
+
             this.Text = "Ningun usuario logueado";
 
             foreach (Button btn in panelIzquierdo.Controls)
@@ -35,6 +37,10 @@ namespace TPI_2024_Parte2
             }
 
             btDeslogueo.Visible = false;
+            tbCiudad.Visible = false;
+            tbDireccion.Visible = false;
+            comboBox1.Visible = false;
+
 
             //Recuperado, serializado, des-serializado y carga de colecciones
             cargaUsuarios();
@@ -67,18 +73,20 @@ namespace TPI_2024_Parte2
             if ((sender as CheckBox).Checked)
             {
                 btnIngReg.Text = "Registrarse";
-                lbUsuario.Text = "Direccion Email";
-                lbUsuario.TextAlign = ContentAlignment.MiddleCenter;
-                lbContrasenia.Text = "Defina una contraseña";
-                lbContrasenia.TextAlign = ContentAlignment.MiddleCenter;
+                tbCiudad.Visible = true;
+                tbDireccion.Visible = true;
+                comboBox1.Enabled = true;
+                comboBox1.Visible = true;
+                limpiarCampos();
             }
             else
             {
                 btnIngReg.Text = "Ingresar";
-                lbUsuario.Text = "Usuario";
-                lbUsuario.TextAlign = ContentAlignment.MiddleCenter;
-                lbContrasenia.Text = "Contraseña";
-                lbContrasenia.TextAlign = ContentAlignment.MiddleCenter;
+                tbCiudad.Visible = false;
+                tbDireccion.Visible = false;
+                comboBox1.Enabled = false;
+                comboBox1.Visible = false;
+                limpiarCampos();
             }
         }
 
@@ -90,6 +98,15 @@ namespace TPI_2024_Parte2
 
         private void btnIngReg_Click(object sender, EventArgs e)
         {
+            if (checkBoxSoyNuevo.Checked)
+            {
+                registrarUnUsuario();
+
+                limpiarCampos();
+
+                return;
+            }
+
             //Comprobacion campos vacios
             if (string.IsNullOrEmpty(tBoxUsuario.Text.Trim()) || string.IsNullOrEmpty(mtBoxUsuarioPass.Text.Trim()))
             {
@@ -112,7 +129,9 @@ namespace TPI_2024_Parte2
                 mtBoxUsuarioPass.Enabled = false;
                 btDeslogueo.Visible = true;
                 checkBoxSoyNuevo.Enabled = false;
-
+                checkBoxSoyNuevo.Visible = false;
+                comboBox1.Enabled = false;
+                comboBox1.Visible = false;
 
                 accesosFuncionalidades(usuarioLogeado.rol);
 
@@ -125,16 +144,22 @@ namespace TPI_2024_Parte2
                 limpiarCampos();
                 return;
             }
-
-
         }
 
         private void btDeslogueo_Click(object sender, EventArgs e)
         {
+            foreach (Button btn in panelIzquierdo.Controls)
+            {
+                btn.Enabled = false;
+            }
+
             tBoxUsuario.Enabled = true;
             mtBoxUsuarioPass.Enabled = true;
             btDeslogueo.Visible = false;
             btnIngReg.Visible = true;
+            checkBoxSoyNuevo.Visible = false;
+            comboBox1.Enabled = true;
+            comboBox1.Visible = true;
 
             limpiarCampos();
 
@@ -145,6 +170,7 @@ namespace TPI_2024_Parte2
             //Se pasan las listas a null
             listaTurnos = null;
             listaServicios = null;
+            listaCategorias = null;
 
             this.Text = "Ningun usuario logueado";
         }
@@ -153,6 +179,9 @@ namespace TPI_2024_Parte2
         {
             tBoxUsuario.ResetText();
             mtBoxUsuarioPass.ResetText();
+            tbCiudad.ResetText();
+            tbDireccion.ResetText();
+            comboBox1.SelectedIndex = -1;
         }
 
         public static async Task cargaUsuarios()
@@ -225,14 +254,14 @@ namespace TPI_2024_Parte2
                 return;
             }
 
-            if (rol == "personal")
+            if (rol == "personal")//AGREGAR NUEVO BOTONES
             {
                 this.Text = "Logueado como Personal";
                 btClientesPorProfesional.Enabled = true;
                 return;
             }
 
-            if (rol == "administrativo")
+            if (rol == "administrativo")//AGREGAR NUEVO BOTONES
             {
                 btClientesPorFecha.Enabled = true;
                 btClientesTodos.Enabled = true;
@@ -259,18 +288,52 @@ namespace TPI_2024_Parte2
             panelLogin.Visible = false;
 
             form.TopLevel = false;
-            form.FormBorderStyle = FormBorderStyle.None; 
-            form.Dock = DockStyle.Fill; 
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
 
             pWelcome.Controls.Add(form);
             form.Show();
         }
 
+        private void registrarUnUsuario()
+        {
+            string ciudad = tbCiudad.Text.Trim();
+            string direccion = tbDireccion.Text.Trim();
+            string correo = tBoxUsuario.Text.Trim();
+            string pass = mtBoxUsuarioPass.Text.Trim();
 
+            if (string.IsNullOrEmpty(ciudad) || string.IsNullOrEmpty(direccion) || string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(pass) || comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Parece que dejado uno o mas campos vacios o mal editados; intente nuevamente.");
+
+                limpiarCampos();
+
+                return;
+            }
+
+            var confirmacion = MessageBox.Show($"Usuario : {correo}\nCiudad : {ciudad}\nDireccion : {direccion}\nRol : {comboBox1.SelectedItem.ToString()}",
+                                   "Son estos datos correctos ¿?",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                //bd.crearUnNuevoUusario(correo, ciudad, direccion, pass, "", "usuario");//Ver de dar opcion del tipo de usuario a crear
+                MessageBox.Show("Se ha enviado la peticion de registro.");
+            }
+
+
+
+
+        }
+
+        private void btTurnos_Click(object sender, EventArgs e)
+        {
+            agregarTurno = new();
+            mostrarForm(agregarTurno);
+        }
     }
 }
-
-
 
 /*
     var json = File.ReadAllText(@"C:\Users\114R7IN\Desktop\Cred\Jasones\Usuarios.json");

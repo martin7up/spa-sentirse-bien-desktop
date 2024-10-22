@@ -4,6 +4,9 @@
     <Compile Update="AdministrarServicios.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="AgregarTurnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ClientesPorFecha.cs">
       <SubType>Form</SubType>
     </Compile>

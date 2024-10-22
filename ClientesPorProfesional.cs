@@ -25,6 +25,9 @@ namespace TPI_2024_Parte2
         public ClientesPorProfesional()
         {
             InitializeComponent();
+
+            Login.cargarTurnos();
+
             cargarComboBox();
 
             monthCalendar1.MaxSelectionCount = 1;
@@ -271,7 +274,7 @@ namespace TPI_2024_Parte2
 
         private void ClientesPorProfesional_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login.panelLogin.Visible = true;
+            Login.refLogin.Visible = true;
         }
         //------------------------------------------------------------------------------------------------------------------------------------------------
     }

@@ -167,9 +167,7 @@ namespace TPI_2024_Parte2.ClasesUtilitarias
             listaCategorias = null;
 
         }
-       
-        
-        
+             
         //Metodos para Turno------------------------------------------------------------------------------------------------------------------------------------
         public async Task habilitarODeshabilitarUnTurno(string idDoc, bool estado)
         {
@@ -186,25 +184,31 @@ namespace TPI_2024_Parte2.ClasesUtilitarias
                 await docref.UpdateAsync(data);
             }
         }//Aplicarlo tambien al cancelar varios turno que no se hayan pagado antes de las 48hs
-        //public async Task crearUnNuevoTurno(string usuarioId, string servicioId, System.DateTime fechaHs)
-        //{
-        //    long segundosDesde1971 = (long)(fechaHs - new System.DateTime(1971, 1, 1)).TotalSeconds;
+        public async Task crearUnNuevoTurno(string usuarioId, string servicioId, System.DateTime fechaHs)//Agrega un turno no pagado y no cancelado
+        {
+            //fechaHs = DateTime.Now;
+            long segundosDesde1971 = (long)(fechaHs - new System.DateTime(1971, 1, 1)).TotalSeconds-86400;//Truncar decimales
+            
+            CollectionReference coll = db.Collection("turnos");//noticias
 
-        //    CollectionReference coll = db.Collection("turnos");
+            Dictionary<string, object> fecha = new Dictionary<string, object>()
+            {
+                { "nanoseconds", 0},
+                { "seconds", segundosDesde1971}
+            };
 
-        //    Dictionary<string, object> data = new Dictionary<string, object>()
-        //    {
-        //        { "seconds", segundosDesde1971 },
-        //        { "nanoseconds", 0 },
-        //        { "is_cancelado", false},
-        //        { "is_pagado", false},                                ¡ESTO ESTA MAL! ... ver fecha es tipo map.
-        //        { "metodo_de_pago", ""},
-        //        { "servicio_id", servicioId},
-        //        { "usuario_id", usuarioId}
-        //    };
-                                                
-        //    await coll.AddAsync(data);
-        //}
+            Dictionary<string, object> data = new Dictionary<string, object>
+            {
+                { "fecha", fecha },
+                { "is_cancelado", false },
+                { "is_pagado", false },
+                { "metodo_de_pago", "" },
+                { "servicio_id", servicioId },
+                { "usuario_id", usuarioId }
+            };
+
+            await coll.AddAsync(data);
+        }
         public async Task pagarUnTurno(string idDoc, string metodoDePago)
         {
             DocumentReference docref = db.Collection("turnos").Document(idDoc);
@@ -235,8 +239,6 @@ namespace TPI_2024_Parte2.ClasesUtilitarias
                 await docref.UpdateAsync(data);
             }
         }
-
-
 
         //Metodos para Servicio---------------------------------------------------------------------------------------------------------------------------------
         public async Task crearUnNuevoServicio(string nombre, string descripcion, string imagen, int precio, string personalACargo, string categoria)
@@ -277,8 +279,6 @@ namespace TPI_2024_Parte2.ClasesUtilitarias
             }
         }
 
-
-
         //Metodos para Categoria--------------------------------------------------------------------------------------------------------------------------------
         public async Task modificarUnaCategoria(string idCategoria, string nombre)
         {
@@ -307,8 +307,6 @@ namespace TPI_2024_Parte2.ClasesUtilitarias
 
             await coll.AddAsync(data);
         }
-
-
 
         //Metodos para Usuario----------------------------------------------------------------------------------------------------------------------------------
         public async Task crearUnNuevoUusario(string username, string ciudad, string direccion, string password, string linkAvatar, string rol)

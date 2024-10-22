@@ -9,5 +9,9 @@ public class CategoriaServicio
 
     //Propiedad extra-------------------------------------------------------------------------------------------------------------------
     public string id { get; set; }
+    public override string ToString()
+    {
+        return nombre;
+    }
 
 }

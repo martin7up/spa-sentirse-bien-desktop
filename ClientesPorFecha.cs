@@ -22,6 +22,8 @@ namespace TPI_2024_Parte2
             monthCalendar1.MaxSelectionCount = 1;
 
             this.Text = Login.usuario;
+
+            Login.cargarTurnos();
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
@@ -254,7 +256,7 @@ namespace TPI_2024_Parte2
 
         private void ClientesPorFecha_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login.panelLogin.Visible = true;
+            Login.refLogin.Visible = true;
         }
     }
 }

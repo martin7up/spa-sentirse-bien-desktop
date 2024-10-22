@@ -40,21 +40,19 @@
             checkBox1 = new CheckBox();
             textBox1 = new TextBox();
             panel3 = new Panel();
+            label5 = new Label();
+            comboBoxCategorias = new ComboBox();
             btCerrar = new Button();
             rbModificarServicio = new RadioButton();
             label8 = new Label();
             comboBox1 = new ComboBox();
-            button1 = new Button();
-            label7 = new Label();
-            calendarioServicios = new MonthCalendar();
+            btGenerarModificar = new Button();
             label6 = new Label();
-            textBox5 = new TextBox();
-            label5 = new Label();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
+            tbPrecioServicio = new TextBox();
+            tbDescripcionServicio = new TextBox();
             label4 = new Label();
             label3 = new Label();
-            textBox2 = new TextBox();
+            tbNombreServicio = new TextBox();
             label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridServicios).BeginInit();
             panel1.SuspendLayout();
@@ -143,7 +141,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(16, 63);
+            checkBox1.Location = new Point(14, 63);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(100, 19);
             checkBox1.TabIndex = 4;
@@ -157,30 +155,47 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(409, 23);
             textBox1.TabIndex = 3;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(comboBoxCategorias);
             panel3.Controls.Add(btCerrar);
             panel3.Controls.Add(rbModificarServicio);
             panel3.Controls.Add(label8);
             panel3.Controls.Add(comboBox1);
-            panel3.Controls.Add(button1);
-            panel3.Controls.Add(label7);
-            panel3.Controls.Add(calendarioServicios);
+            panel3.Controls.Add(btGenerarModificar);
             panel3.Controls.Add(label6);
-            panel3.Controls.Add(textBox5);
-            panel3.Controls.Add(label5);
-            panel3.Controls.Add(textBox4);
-            panel3.Controls.Add(textBox3);
+            panel3.Controls.Add(tbPrecioServicio);
+            panel3.Controls.Add(tbDescripcionServicio);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label3);
-            panel3.Controls.Add(textBox2);
+            panel3.Controls.Add(tbNombreServicio);
             panel3.Controls.Add(label2);
             panel3.Location = new Point(635, 12);
             panel3.Name = "panel3";
             panel3.Size = new Size(337, 643);
             panel3.TabIndex = 5;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(9, 341);
+            label5.Name = "label5";
+            label5.Size = new Size(121, 15);
+            label5.TabIndex = 23;
+            label5.Text = "Categoria del Servicio";
+            // 
+            // comboBoxCategorias
+            // 
+            comboBoxCategorias.FormattingEnabled = true;
+            comboBoxCategorias.Location = new Point(9, 359);
+            comboBoxCategorias.Name = "comboBoxCategorias";
+            comboBoxCategorias.Size = new Size(317, 23);
+            comboBoxCategorias.Sorted = true;
+            comboBoxCategorias.TabIndex = 22;
             // 
             // btCerrar
             // 
@@ -195,7 +210,7 @@
             // rbModificarServicio
             // 
             rbModificarServicio.AutoSize = true;
-            rbModificarServicio.Location = new Point(206, 159);
+            rbModificarServicio.Location = new Point(205, 252);
             rbModificarServicio.Name = "rbModificarServicio";
             rbModificarServicio.Size = new Size(120, 19);
             rbModificarServicio.TabIndex = 20;
@@ -207,7 +222,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(10, 190);
+            label8.Location = new Point(9, 283);
             label8.Name = "label8";
             label8.Size = new Size(170, 15);
             label8.TabIndex = 19;
@@ -216,81 +231,52 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(10, 208);
+            comboBox1.Location = new Point(9, 301);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(317, 23);
             comboBox1.Sorted = true;
             comboBox1.TabIndex = 18;
             // 
-            // button1
+            // btGenerarModificar
             // 
-            button1.Location = new Point(262, 379);
-            button1.Name = "button1";
-            button1.Size = new Size(65, 63);
-            button1.TabIndex = 16;
-            button1.Text = "Nuevo Servicio";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(10, 353);
-            label7.Name = "label7";
-            label7.Size = new Size(189, 15);
-            label7.TabIndex = 15;
-            label7.Text = "Fechas que contienen este servicio";
-            // 
-            // calendarioServicios
-            // 
-            calendarioServicios.FirstDayOfWeek = Day.Sunday;
-            calendarioServicios.Location = new Point(10, 377);
-            calendarioServicios.Name = "calendarioServicios";
-            calendarioServicios.TabIndex = 14;
+            btGenerarModificar.Location = new Point(9, 458);
+            btGenerarModificar.Name = "btGenerarModificar";
+            btGenerarModificar.Size = new Size(316, 63);
+            btGenerarModificar.TabIndex = 16;
+            btGenerarModificar.Text = "Crear Nuevo Servicio";
+            btGenerarModificar.UseVisualStyleBackColor = true;
+            btGenerarModificar.Click += btGenerarModificar_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(175, 160);
+            label6.Location = new Point(127, 254);
             label6.Name = "label6";
             label6.Size = new Size(13, 15);
             label6.TabIndex = 13;
             label6.Text = "$";
             // 
-            // textBox5
+            // tbPrecioServicio
             // 
-            textBox5.Location = new Point(128, 155);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(46, 23);
-            textBox5.TabIndex = 12;
+            tbPrecioServicio.Location = new Point(7, 248);
+            tbPrecioServicio.Name = "tbPrecioServicio";
+            tbPrecioServicio.PlaceholderText = "US$ / EUR";
+            tbPrecioServicio.Size = new Size(114, 23);
+            tbPrecioServicio.TabIndex = 10;
             // 
-            // label5
+            // tbDescripcionServicio
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(121, 163);
-            label5.Name = "label5";
-            label5.Size = new Size(10, 15);
-            label5.TabIndex = 11;
-            label5.Text = ",";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(8, 155);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(114, 23);
-            textBox4.TabIndex = 10;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(6, 66);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(321, 68);
-            textBox3.TabIndex = 9;
+            tbDescripcionServicio.Location = new Point(5, 159);
+            tbDescripcionServicio.Multiline = true;
+            tbDescripcionServicio.Name = "tbDescripcionServicio";
+            tbDescripcionServicio.PlaceholderText = "...descripcion que denote las virtudes del servicio";
+            tbDescripcionServicio.Size = new Size(321, 68);
+            tbDescripcionServicio.TabIndex = 9;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 137);
+            label4.Location = new Point(5, 230);
             label4.Name = "label4";
             label4.Size = new Size(84, 15);
             label4.TabIndex = 8;
@@ -299,23 +285,24 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 48);
+            label3.Location = new Point(5, 141);
             label3.Name = "label3";
             label3.Size = new Size(113, 15);
             label3.TabIndex = 6;
             label3.Text = "Descripcion Servicio";
             // 
-            // textBox2
+            // tbNombreServicio
             // 
-            textBox2.Location = new Point(4, 22);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(323, 23);
-            textBox2.TabIndex = 5;
+            tbNombreServicio.Location = new Point(3, 115);
+            tbNombreServicio.Name = "tbNombreServicio";
+            tbNombreServicio.PlaceholderText = "...nombre del servicio a crear";
+            tbNombreServicio.Size = new Size(323, 23);
+            tbNombreServicio.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 4);
+            label2.Location = new Point(5, 97);
             label2.Name = "label2";
             label2.Size = new Size(95, 15);
             label2.TabIndex = 4;
@@ -352,26 +339,24 @@
         private CheckBox checkBox1;
         private TextBox textBox1;
         private Panel panel3;
-        private TextBox textBox2;
+        private TextBox tbNombreServicio;
         private Label label2;
         private Label label3;
         private Label label6;
-        private TextBox textBox5;
-        private Label label5;
-        private TextBox textBox4;
-        private TextBox textBox3;
+        private TextBox tbPrecioServicio;
+        private TextBox tbDescripcionServicio;
         private Label label4;
-        private Label label7;
-        private MonthCalendar calendarioServicios;
-        private Button button1;
+        private Button btGenerarModificar;
         private ComboBox comboBox1;
         private RadioButton rbModificarServicio;
         private Label label8;
+        private Button btCerrar;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewTextBoxColumn Descripcion;
         private DataGridViewTextBoxColumn Precio;
         private DataGridViewTextBoxColumn Profesional;
-        private Button btCerrar;
+        private Label label5;
+        private ComboBox comboBoxCategorias;
     }
 }

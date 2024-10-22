@@ -44,7 +44,7 @@ namespace TPI_2024_Parte2
 
         private void ClientesTodos_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login.panelLogin.Visible = true;
+            Login.refLogin.Visible = true;
         }
     }
 }
